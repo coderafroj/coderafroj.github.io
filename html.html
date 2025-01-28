@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML Full Course - Learn HTML from Basic to Advanced with Bytecore">
+    <meta name="keywords" content="HTML, Web Development, Bytecore, Learn HTML">
+    <meta name="author" content="Bytecore Computer Centre">
+    <title>HTML Full Course | Bytecore</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .subtext {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .course-section {
+            background: skyblue;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s ease-in-out;
+            height:50px;
+        }
+        .course-section:hover {
+            background: #e0e0e0;
+        }
+        .content {
+            display: none;
+            padding: 15px;
+            font-size: 16px;
+            text-align: left;
+            line-height: 1.6;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background: #ddd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        pre {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">HTML Full Course</div>
+    <p class="subtext">Learn HTML from Basic to Advanced with Bytecore</p>
+
+    <div class="course-section" onclick="toggleContent('htmlBasics')">
+        HTML Basics
+    </div>
+    <div id="htmlBasics" class="content">
+        <h2>1. What is HTML?</h2>
+        <p>HTML (HyperText Markup Language) is the standard language for creating web pages. It structures web content using elements like headings, paragraphs, links, images, and more.</p>
+
+        <h2>2. Basic Structure of an HTML Page</h2>
+        <p>Every HTML document starts with a basic structure:</p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;My First Web Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Welcome to HTML!&lt;/h1&gt;
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <h2>3. HTML Elements</h2>
+        <p>HTML elements are the building blocks of a webpage. Example:</p>
+        <ul>
+            <li><code>&lt;h1&gt;...&lt;/h1&gt;</code> - Headings</li>
+            <li><code>&lt;p&gt;...&lt;/p&gt;</code> - Paragraph</li>
+            <li><code>&lt;a href="URL"&gt;...&lt;/a&gt;</code> - Links</li>
+            <li><code>&lt;img src="image.jpg" alt="description"&gt;</code> - Images</li>
+        </ul>
+
+        <h2>4. Headings & Paragraphs</h2>
+        <p>HTML provides six levels of headings:</p>
+        <pre>
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+        </pre>
+
+        <h2>5. Lists in HTML</h2>
+        <p>There are two main types of lists:</p>
+        <h3>Ordered List:</h3>
+        <pre>
+&lt;ol&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ol&gt;
+        </pre>
+        <h3>Unordered List:</h3>
+        <pre>
+&lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;
+    &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+        </pre>
+
+        <h2>6. Links and Anchors</h2>
+        <p>HTML links are created using the <code>&lt;a&gt;</code> tag.</p>
+        <pre>
+&lt;a href="https://www.bytecorecomputercentre.com"&gt;Visit Bytecore&lt;/a&gt;
+        </pre>
+
+        <h2>7. Images in HTML</h2>
+        <p>Use the <code>&lt;img&gt;</code> tag to add images.</p>
+        <pre>
+&lt;img src="image.jpg" alt="Description"&gt;
+        </pre>
+
+        <h2>8. Tables in HTML</h2>
+        <pre>
+&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;John&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+
+        <h2>9. Forms in HTML</h2>
+        <pre>
+&lt;form&gt;
+    Name: &lt;input type="text" name="name"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+        </pre>
+    </div>
+</div>
+
+
+    <div class="course-section" onclick="toggleContent('htmlIntermediate')">
+        HTML Intermediate
+    </div>
+    <div id="htmlIntermediate" class="content">
+        <h2>1. Advanced HTML Forms</h2>
+        <p>HTML Forms यूज़र से **डेटा इनपुट** लेने के लिए होते हैं। यहाँ कुछ important input fields हैं:</p>
+        <pre>
+&lt;form action="submit.php" method="POST"&gt;
+    Name: &lt;input type="text" name="name" required placeholder="Enter your name"&gt;&lt;br&gt;
+    
+    Email: &lt;input type="email" name="email" required placeholder="Enter your email"&gt;&lt;br&gt;
+
+    Password: &lt;input type="password" name="password" required placeholder="Create a password"&gt;&lt;br&gt;
+
+    Age: &lt;input type="number" name="age" min="18" max="60"&gt;&lt;br&gt;
+
+    Date of Birth: &lt;input type="date" name="dob"&gt;&lt;br&gt;
+
+    Gender: 
+    &lt;input type="radio" name="gender" value="Male"&gt; Male
+    &lt;input type="radio" name="gender" value="Female"&gt; Female&lt;br&gt;
+
+    Hobbies: 
+    &lt;input type="checkbox" name="hobby" value="Music"&gt; Music
+    &lt;input type="checkbox" name="hobby" value="Sports"&gt; Sports&lt;br&gt;
+
+    Upload Profile Picture: &lt;input type="file" name="profile_pic"&gt;&lt;br&gt;
+
+    Select Country: 
+    &lt;select name="country"&gt;
+        &lt;option value="India"&gt;India&lt;/option&gt;
+        &lt;option value="USA"&gt;USA&lt;/option&gt;
+    &lt;/select&gt;&lt;br&gt;
+
+    &lt;input type="submit" value="Register"&gt;
+&lt;/form&gt;
+        </pre>
+
+        <h2>2. HTML Tables (Row & Column Merging)</h2>
+        <p>HTML Tables **डेटा को row और column में** शो करने के लिए होती हैं।</p>
+        <pre>
+&lt;table border="1" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th colspan="2"&gt;Details&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Aman&lt;/td&gt;
+        &lt;td&gt;25 Years&lt;/td&gt;
+        &lt;td&gt;India&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Software Developer&lt;/td&gt;
+        &lt;td&gt;Python&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+        </pre>
+
+        <h2>3. HTML Multimedia (Audio & Video)</h2>
+        <p>वेबसाइट में **Audio & Video** ऐड करना बहुत आसान है:</p>
+        <h3>Audio File:</h3>
+        <pre>
+&lt;audio controls&gt;
+    &lt;source src="song.mp3" type="audio/mpeg"&gt;
+    Your browser does not support the audio tag.
+&lt;/audio&gt;
+        </pre>
+
+        <h3>Video File:</h3>
+        <pre>
+&lt;video width="320" height="240" controls&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+        </pre>
+
+        <h2>4. Webpage Embed करना (Iframe)</h2>
+        <p>Iframe से हम **दूसरी वेबसाइट को अपने पेज पर लोड** कर सकते हैं:</p>
+        <pre>
+&lt;iframe src="https://www.google.com" width="600" height="400"&gt;&lt;/iframe&gt;
+        </pre>
+
+        <h2>5. HTML Form Validation (User Input Check करना)</h2>
+        <p>Validation से गलत डेटा सबमिट नहीं होगा:</p>
+        <pre>
+&lt;form&gt;
+    Email: &lt;input type="email" required&gt;&lt;br&gt;
+    Age: &lt;input type="number" min="18" max="50"&gt;&lt;br&gt;
+    &lt;input type="submit"&gt;
+&lt;/form&gt;
+        </pre>
+
+        <h2>6. HTML Meta Tags (SEO के लिए जरूरी)</h2>
+        <p>Meta Tags वेबसाइट की **SEO रैंकिंग** बढ़ाने में मदद करते हैं:</p>
+        <pre>
+&lt;meta name="description" content="Best HTML Course at Bytecore"&gt;
+&lt;meta name="keywords" content="HTML, Web Development, Bytecore"&gt;
+&lt;meta name="author" content="Bytecore"&gt;
+        </pre>
+
+        <h2>7. HTML Special Characters (Entities)</h2>
+        <p>कुछ स्पेशल कैरेक्टर्स को HTML में **ऐसे लिखते हैं:**</p>
+        <pre>
+&lt;p&gt;Copyright: &amp;copy; 2025 Bytecore&lt;/p&gt;
+&lt;p&gt;Trademark: &amp;trade;&lt;/p&gt;
+&lt;p&gt;Less than: &amp;lt; and Greater than: &amp;gt;&lt;/p&gt;
+        </pre>
+
+        <h2>8. HTML SVG (Graphics बनाना)</h2>
+        <p>SVG से **शेप और इमेज** क्रिएट कर सकते हैं:</p>
+        <pre>
+&lt;svg width="100" height="100"&gt;
+    &lt;circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red"&gt;&lt;/circle&gt;
+&lt;/svg&gt;
+        </pre>
+
+        <h2>9. HTML Canvas (Graphics पर ड्राइंग करना)</h2>
+        <pre>
+&lt;canvas id="myCanvas" width="200" height="100" style="border:1px solid #000;"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "blue";
+    ctx.fillRect(20, 20, 100, 50);
+&lt;/script&gt;
+        </pre>
+
+        <h2>10. HTML Responsive Design (Mobile-Friendly Layout)</h2>
+        <p>वेबसाइट को मोबाइल के लिए सेट करने के लिए:</p>
+        <pre>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        </pre>
+
+        <p>CSS का यूज करें:</p>
+        <pre>
+@media (max-width: 600px) {
+    body {
+        background-color: lightgray;
+    }
+}
+        </pre>
+    </div>
+
+    <div class="course-section" onclick="toggleContent('htmlAdvanced')">
+        HTML Advanced
+    </div>
+    <div id="htmlAdvanced" class="content">
+        <h2>1. HTML5 Advanced Features</h2>
+        <p>HTML5 ने **नए semantic elements, storage, और geolocation** जैसी powerful चीजें introduce की हैं।</p>
+
+        <h3>✔️ Semantic Tags</h3>
+        <p>HTML5 में **सही तरीके से webpage structure define** करने के लिए semantic tags आए:</p>
+        <pre>
+&lt;header&gt;Site Header&lt;/header&gt;
+&lt;nav&gt;Navigation Menu&lt;/nav&gt;
+&lt;section&gt;Main Content&lt;/section&gt;
+&lt;article&gt;Blog Post&lt;/article&gt;
+&lt;aside&gt;Sidebar&lt;/aside&gt;
+&lt;footer&gt;Website Footer&lt;/footer&gt;
+        </pre>
+
+        <h3>✔️ Web Storage (LocalStorage & SessionStorage)</h3>
+        <p>यह browser में data store करने का **बेहतर तरीका** है (cookies से ज्यादा सुरक्षित):</p>
+        <pre>
+&lt;script&gt;
+    // Data store
+    localStorage.setItem("username", "Afu");
+    sessionStorage.setItem("theme", "dark");
+
+    // Data retrieve
+    alert(localStorage.getItem("username")); // Output: Afu
+&lt;/script&gt;
+        </pre>
+
+        <h3>✔️ Geolocation API (User Location Find करना)</h3>
+        <pre>
+&lt;script&gt;
+    navigator.geolocation.getCurrentPosition(function(position) {
+        alert("Latitude: " + position.coords.latitude + 
+              ", Longitude: " + position.coords.longitude);
+    });
+&lt;/script&gt;
+        </pre>
+
+        <h2>2. Advanced HTML Forms (Validation, AutoComplete, Hidden Fields)</h2>
+        <h3>✔️ Custom Form Validation</h3>
+        <pre>
+&lt;form&gt;
+    Email: &lt;input type="email" required placeholder="Enter your email"&gt;&lt;br&gt;
+    Password: &lt;input type="password" pattern=".{6,}" title="Minimum 6 characters"&gt;&lt;br&gt;
+    &lt;input type="submit"&gt;
+&lt;/form&gt;
+        </pre>
+
+        <h3>✔️ Hidden Input Fields (Secret Data Send करना)</h3>
+        <pre>
+&lt;input type="hidden" name="userID" value="12345"&gt;
+        </pre>
+
+        <h2>3. HTML APIs (Drag & Drop, Notifications, Speech API)</h2>
+        <h3>✔️ Drag & Drop Feature</h3>
+        <pre>
+&lt;div id="dragMe" draggable="true" ondragstart="drag(event)"&gt;Drag me&lt;/div&gt;
+&lt;div id="dropHere" ondrop="drop(event)" ondragover="allowDrop(event)" style="border:1px solid; width:200px; height:50px;"&gt;Drop Here&lt;/div&gt;
+
+&lt;script&gt;
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(data));
+}
+&lt;/script&gt;
+        </pre>
+
+        <h3>✔️ Web Notifications</h3>
+        <pre>
+&lt;script&gt;
+    Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+            new Notification("Hello Afu! This is a Web Notification!");
+        }
+    });
+&lt;/script&gt;
+        </pre>
+
+        <h3>✔️ Speech Recognition API (Voice Command लेना)</h3>
+        <pre>
+&lt;script&gt;
+    var recognition = new webkitSpeechRecognition();
+    recognition.onresult = function(event) {
+        alert(event.results[0][0].transcript);
+    };
+    recognition.start();
+&lt;/script&gt;
+        </pre>
+
+        <h2>4. HTML Graphics (SVG, Canvas, WebGL)</h2>
+        <h3>✔️ Advanced SVG (Shapes & Text)</h3>
+        <pre>
+&lt;svg width="200" height="100"&gt;
+    &lt;rect width="200" height="100" style="fill:blue;stroke:black;stroke-width:2;" /&gt;
+    &lt;text x="50" y="50" fill="white"&gt;Hello SVG!&lt;/text&gt;
+&lt;/svg&gt;
+        </pre>
+
+        <h3>✔️ Advanced Canvas (Shapes & Drawing)</h3>
+        <pre>
+&lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var ctx = document.getElementById("myCanvas").getContext("2d");
+    ctx.fillStyle = "green";
+    ctx.fillRect(20, 20, 150, 75);
+&lt;/script&gt;
+        </pre>
+
+        <h2>5. HTML Responsive Design (Flexbox & Grid)</h2>
+        <h3>✔️ CSS Flexbox</h3>
+        <pre>
+&lt;style&gt;
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .item {
+        width: 100px;
+        height: 100px;
+        background-color: orange;
+        margin: 10px;
+    }
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="item"&gt;Box 1&lt;/div&gt;
+    &lt;div class="item"&gt;Box 2&lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+
+        <h2>6. HTML SEO (Schema Markup & Best Practices)</h2>
+        <h3>✔️ Schema Markup (SEO Boost)</h3>
+        <pre>
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HTML Advanced Course",
+  "author": "Bytecore",
+  "datePublished": "2025-01-14"
+}
+&lt;/script&gt;
+        </pre>
+
+        <h2>7. HTML Security (Preventing XSS & CSRF)</h2>
+        <h3>✔️ Input Sanitization (XSS से बचाव)</h3>
+        <pre>
+&lt;script&gt;
+    function sanitizeInput(input) {
+        return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+&lt;/script&gt;
+        </pre>
+
+        <h2>8. HTML Accessibility (ARIA & Screen Readers)</h2>
+        <h3>✔️ ARIA Attributes</h3>
+        <pre>
+&lt;button aria-label="Close Menu"&gt;X&lt;/button&gt;
+        </pre>
+    </div>
+
+
+
+
+<div class="course-section" onclick="toggleContent('htmlAttributesSummary')">
+    HTML Attributes - 
+</div>
+<div id="htmlAttributesSummary" class="content">
+    <h2>🔹 HTML Attributes - Detailed Overview</h2>
+    <p>HTML Attributes, elements ke additional properties define karte hain jo unhe specific behavior ya styling provide karte hain. Yeh attributes element tags ke andar likhe jaate hain aur unke values ko specify karte hain.</p>
+
+    <h3>📌 1. Basic Structure of HTML Attribute</h3>
+    <pre>
+&lt;img src="image.jpg" alt="Image description" width="500" height="300"&gt;
+        </pre>
+    <p>Yahan `src`, `alt`, `width`, aur `height` attributes hai jo `<img>` element ke properties define karte hain.</p>
+
+    <h3>📌 2. Common HTML Attributes</h3>
+    <ul>
+        <li><b>id</b> - Element ka unique identifier.</li>
+        <li><b>class</b> - CSS styling apply karne ke liye use hota hai.</li>
+        <li><b>src</b> - External resource ka path define karta hai, jaise images ya scripts.</li>
+        <li><b>href</b> - Hyperlink ke liye destination URL specify karta hai.</li>
+        <li><b>alt</b> - Image ke liye alternative text, jo accessibility ke liye important hai.</li>
+        <li><b>title</b> - Element ka additional information display karta hai jab user hover kare.</li>
+    </ul>
+
+    <h3>📌 3. HTML Global Attributes</h3>
+    <ul>
+        <li><b>lang</b> - Language specify karta hai (e.g., lang="en" for English).</li>
+        <li><b>style</b> - Inline CSS styles define karta hai.</li>
+        <li><b>tabindex</b> - Keyboard navigation order specify karta hai.</li>
+        <li><b>data-*</b> - Custom attributes jo specific data store karne ke liye use hote hain.</li>
+    </ul>
+
+    <h3>📌 4. Important HTML Event Attributes</h3>
+    <ul>
+        <li><b>onclick</b> - Element par click hone par JavaScript function ko trigger karta hai.</li>
+        <li><b>onmouseover</b> - Mouse hover hone par function execute hota hai.</li>
+        <li><b>onchange</b> - Form elements ke value change hone par function call hota hai.</li>
+        <li><b>onfocus</b> - Element focus hone par event trigger hota hai (form input).</li>
+    </ul>
+
+    <h3>📌 5. Advanced HTML Attributes Usage</h3>
+    <p><b>Example: <code>data-* attributes</code></b></p>
+    <pre>
+&lt;div data-user="Afu" data-role="developer"&gt;User Information&lt;/div&gt;
+        </pre>
+    <p>Yeh custom data attributes HTML tags ke andar additional information store karne ke liye use hote hain. JavaScript se hum in values ko access kar sakte hain:</p>
+    <pre>
+document.querySelector("div").dataset.user; // "Afu"
+        </pre>
+
+    <h3>📌 6. HTML Forms and Attributes</h3>
+    <p>Forms me attributes form elements ko behavior aur validation control karte hain:</p>
+    <ul>
+        <li><b>action</b> - Form submission ka destination URL.</li>
+        <li><b>method</b> - Form submission method (GET/POST).</li>
+        <li><b>required</b> - Form field ko mandatory banata hai.</li>
+        <li><b>placeholder</b> - Form input field me default text display karta hai.</li>
+    </ul>
+    <pre>
+&lt;form action="submit.php" method="POST"&gt;
+    &lt;input type="text" required placeholder="Enter your name"&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+        </pre>
+
+    <h3>📌 7. HTML5 New Attributes</h3>
+    <ul>
+        <li><b>autofocus</b> - Input field ko automatically focus karta hai jab page load ho.</li>
+        <li><b>placeholder</b> - Field ke andar placeholder text display karta hai.</li>
+        <li><b>autocomplete</b> - Form input field ke liye browser ko auto-fill suggest karta hai.</li>
+        <li><b>required</b> - Field ko mandatory banaata hai.</li>
+    </ul>
+
+    <h3>📌 8. HTML Accessibility Attributes</h3>
+    <p>HTML me accessibility attributes use karna zaroori hai taaki visually impaired users ko bhi website use karna asaan ho:</p>
+    <ul>
+        <li><b>aria-label</b> - Element ko descriptive label deta hai, jo screen readers use karte hain.</li>
+        <li><b>role</b> - Element ka role define karta hai, jaise <code>role="navigation"</code>.</li>
+        <li><b>tabindex</b> - Keyboard users ke liye tab navigation define karta hai.</li>
+    </ul>
+    <pre>
+&lt;button aria-label="Close Menu"&gt;X&lt;/button&gt;
+        </pre>
+
+    <h3>🔹 Conclusion:</h3>
+    <p>HTML attributes website ke structure aur behavior ko customize karte hain. In attributes ko samajhna zaroori hai, kyunki yeh **web development ke fundamental parts** hain. Agar aapko attributes achhe se samajh aa gaye, to aap easily **advanced HTML features** ka use kar sakte hain.</p>
+
+    <p><b>✅ Next Steps:</b> Advanced HTML features aur JavaScript ke saath integration seekhna start karo! 🚀</p>
+</div>
+
+
+    <div class="course-section" onclick="toggleContent('htmlSummary')">
+        HTML Summary
+    </div>
+    <div id="htmlSummary" class="content">
+        <h2>🔹 HTML Summary - Complete Overview</h2>
+        <p>HTML (HyperText Markup Language) ek markup language hai jo **web pages banane ke liye use hoti hai**. Yeh sirf structure define karta hai, styling CSS se hoti hai aur interactivity JavaScript se aati hai.</p>
+
+        <h3>📌 1. Basic HTML Structure</h3>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+
+        <h3>📌 2. Important HTML Tags</h3>
+        <ul>
+            <li><b>&lt;h1&gt; to &lt;h6&gt;</b> - Headings</li>
+            <li><b>&lt;p&gt;</b> - Paragraph</li>
+            <li><b>&lt;a href="link"&gt;</b> - Hyperlink</li>
+            <li><b>&lt;img src="image.jpg"&gt;</b> - Image</li>
+            <li><b>&lt;ul&gt; &amp; &lt;ol&gt;</b> - Lists</li>
+            <li><b>&lt;table&gt;</b> - Table</li>
+            <li><b>&lt;form&gt;</b> - Forms</li>
+        </ul>
+
+        <h3>📌 3. HTML Forms & Inputs</h3>
+        <pre>
+&lt;form&gt;
+    Name: &lt;input type="text" required&gt;&lt;br&gt;
+    Email: &lt;input type="email"&gt;&lt;br&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+        </pre>
+
+        <h3>📌 4. HTML5 New Features</h3>
+        <ul>
+            <li><b>Semantic Tags:</b> &lt;header&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</li>
+            <li><b>Multimedia:</b> &lt;audio&gt; &amp; &lt;video&gt;</li>
+            <li><b>Web Storage:</b> localStorage & sessionStorage</li>
+            <li><b>Geolocation API:</b> User location track karna</li>
+        </ul>
+
+        <h3>📌 5. HTML Graphics</h3>
+        <pre>
+&lt;canvas id="myCanvas"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var ctx = document.getElementById("myCanvas").getContext("2d");
+    ctx.fillStyle = "blue";
+    ctx.fillRect(20, 20, 150, 75);
+&lt;/script&gt;
+        </pre>
+
+        <h3>📌 6. HTML Responsive Design</h3>
+        <p>Responsive websites ke liye CSS media queries aur flexbox/grid use karte hain.</p>
+        <pre>
+&lt;style&gt;
+    @media (max-width: 600px) {
+        body { background-color: lightgray; }
+    }
+&lt;/style&gt;
+        </pre>
+
+        <h3>📌 7. HTML SEO Best Practices</h3>
+        <ul>
+            <li><b>Use headings properly</b> (H1 for main title, H2 for subheadings)</li>
+            <li><b>Use alt text</b> in images for better accessibility</li>
+            <li><b>Use meta tags</b> for better search ranking</li>
+        </ul>
+
+        <h3>📌 8. HTML Security Tips</h3>
+        <p>Cross-Site Scripting (XSS) attacks se bachne ke liye input sanitize karna important hai:</p>
+        <pre>
+&lt;script&gt;
+function sanitizeInput(input) {
+    return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+&lt;/script&gt;
+        </pre>
+
+        <h3>📌 9. HTML Accessibility (Important for Users)</h3>
+        <p>Visually impaired users ke liye **ARIA attributes** aur proper labels use karo.</p>
+        <pre>
+&lt;button aria-label="Close Menu"&gt;X&lt;/button&gt;
+        </pre>
+
+        <h3>🔹 Conclusion:</h3>
+        <p>HTML ek powerful markup language hai jo **web development ka base** hai. Agar tumhe HTML achi tarah samajh aa gayi, to tum easily **CSS aur JavaScript** seekh sakte ho.</p>
+
+        <p><b>✅ Next Steps:</b> CSS & JavaScript seekhna start karo! 🚀</p>
+    </div>
+
+<script>
+    function toggleContent(id) {
+        var content = document.getElementById(id);
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
