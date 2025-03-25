@@ -49,6 +49,7 @@ header{
 
 .hero{
 	height: 100vh;
+	width:100vw;
 	background: url(hero-evego.avif) no-repeat;
 	background-size: cover;
 	background-position: center;
