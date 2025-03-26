@@ -9,7 +9,7 @@ body {
     padding-top: 64px;
 }
 
-
+/* Header */
 header {
     position: fixed;
     top: 0;
@@ -25,7 +25,7 @@ header {
 }
 
 .logo {
-    padding: 20px 30px;
+    padding: 10px 20px; /* Reduced padding for better fit */
 }
 
 .navbar ul {
@@ -45,14 +45,13 @@ header {
     font-size: 1.2rem;
 }
 
-
+/* Hero Section */
 .hero {
     height: 100vh;
     background: url(hero-evego.avif) no-repeat;
-    background-size: cover; 
-    background-position: center; 
+    background-size: cover;
+    background-position: center;
     box-shadow: 0 0 4px 8px white;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,6 +75,7 @@ header {
     z-index: 2;
     max-width: 1000px;
     padding: 20px;
+    width: 100%; /* Ensure it takes full width */
 }
 
 .hero-content h3 {
@@ -98,7 +98,6 @@ header {
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .searchbar {
     display: flex;
@@ -151,78 +150,85 @@ button {
     padding-left: 35px;
 }
 
-/*event section*/
-.event{
-/*    display: flex;*/
+/* Event Section */
+.event {
     max-width: 1364px;
-    justify-content: center;
+    margin: 0 auto; /* Center the content */
+    width: 100%; /* Ensure it takes full width */
 }
-.event h2{
+
+.event h2 {
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
     margin-top: 40px;
     margin-bottom: 10px;
-
 }
-.event p{
+
+.event p {
     text-align: center;
 }
 
-.eventimg{
+.eventimg {
     display: flex;
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
     padding: 10px 15px;
-    
 }
 
-.eventimg .img1{
+.eventimg .img1 {
     flex-basis: 33.33%;
     margin: 2.5%;
-
-
 }
-.eventimg .img1 img{
+
+.eventimg .img1 img {
     width: 100%;
     border-radius: 24px;
 }
-.img1content p{
+
+.img1content p {
     text-align: left;
     margin-top: 10px;
-
 }
-.img1content h3{
+
+.img1content h3 {
     font-weight: 600;
     font-size: 1.5rem;
     margin-top: 10px;
-
 }
 
-.eventmanage{
+/* Event Management Section */
+.eventmanage {
     display: flex;
     gap: 40%;
     max-width: 1364px;
+    margin: 0 auto;
+    width: 100%; /* Ensure it takes full width */
 }
-.em1{
+
+.em1 {
     flex-basis: 25%;
     padding: 30px 60px;
 }
-.em1 h1{
+
+.em1 h1 {
     font-size: 2rem;
     font-weight: 700;
 }
-.em2{
+
+.em2 {
     flex-basis: 25%;
     padding: 30px 20px;
 }
 
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-   
+    /* Header */
     header {
         flex-direction: column;
-        height: auto; 
-        padding: 10px;
+        height: auto;
+        padding: 10px 0; /* Remove side padding to take full width */
+        width: 100%;
     }
 
     .logo {
@@ -230,20 +236,20 @@ button {
     }
 
     .navbar ul {
-        
         gap: 20px;
         text-align: center;
         padding: 10px 0;
+        width: 100%; /* Ensure it takes full width */
     }
 
     .sign ul {
-        
         gap: 15px;
         margin-right: 0;
         padding: 10px 0;
+        width: 100%; /* Ensure it takes full width */
     }
 
-    
+    /* Hero Section */
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -260,13 +266,44 @@ button {
     .searchbar {
         width: 90%;
         max-width: 400px;
+        height: auto;
+        padding: 10px;
     }
 
     .searchbar select,
     .searchbar input,
     .searchbar button {
-        width: 100px;
+        width: 100%; 
+        margin: 5px 0;
         font-size: 0.9rem;
+    }
+
+    /* Event Section */
+    .event {
+        max-width: 100%; /* Remove max-width restriction */
+        padding: 0 10px;
+    }
+
+    .eventimg {
+        flex-direction: column;
+        padding: 10px 0; /* Remove side padding */
+    }
+
+    .eventimg .img1 {
+        flex-basis: 100%;
+        margin: 10px 0; /* Remove side margins */
+    }
+
+    /* Event Management Section */
+    .eventmanage {
+        flex-direction: column;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .em1, .em2 {
+        flex-basis: 100%;
+        padding: 20px;
     }
 }
 
@@ -279,38 +316,26 @@ button {
         font-size: 0.8rem;
     }
 
-    .searchbar {
-        height: auto;
-        padding: 10px;
-        width: 100%;
-        max-width: 400px;
-    }
-
-    .searchbar select,
-    .searchbar input,
-    .searchbar button {
-        flex-basis: 33.33
-        margin: 5px 0;
-    }
     .navbar ul,
     .sign ul {
         font-size: 1rem;
     }
-    .eventimg{
+
+    .eventimg {
         flex-direction: column;
-        padding: 10px;
+        padding: 10px 0;
     }
-    .img1{
+
+    .eventimg .img1 {
         flex-basis: 100%;
+        margin: 10px 0;
     }
-    .heding h2{
+
+    .heding h2 {
         font-size: 1.5rem;
+    }
 
+    .heding p {
+        font-size: 0.85rem;
     }
-    .heding p{
-        font-size: .85rem;
-    }
-    
 }
-
-
