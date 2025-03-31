@@ -9,7 +9,7 @@ body {
     padding-top: 64px;
 }
 
-/* Header */
+
 header {
     position: fixed;
     top: 0;
@@ -25,7 +25,7 @@ header {
 }
 
 .logo {
-    padding: 10px 20px; /* Reduced padding for better fit */
+    padding: 10px 20px; 
 }
 
 .navbar ul {
@@ -43,9 +43,9 @@ header {
     list-style: none;
     flex-grow: 1;
     font-size: 1.2rem;
-}
+} 
 
-/* Hero Section */
+
 .hero {
     height: 100vh;
     background: url(hero-evego.avif) no-repeat;
@@ -75,7 +75,7 @@ header {
     z-index: 2;
     max-width: 1000px;
     padding: 20px;
-    width: 100%; /* Ensure it takes full width */
+    width: 100%; 
 }
 
 .hero-content h3 {
@@ -150,11 +150,11 @@ button {
     padding-left: 35px;
 }
 
-/* Event Section */
+
 .event {
     max-width: 1364px;
-    margin: 0 auto; /* Center the content */
-    width: 100%; /* Ensure it takes full width */
+    margin: 0 auto; 
+    width: 100%; 
 }
 
 .event h2 {
@@ -184,7 +184,14 @@ button {
 .eventimg .img1 img {
     width: 100%;
     border-radius: 24px;
+    transition: transform .3s ease;
+
 }
+.eventimg .img1 img:hover{
+    transform: scale(1.02);
+
+}
+
 
 .img1content p {
     text-align: left;
@@ -197,13 +204,13 @@ button {
     margin-top: 10px;
 }
 
-/* Event Management Section */
+
 .eventmanage {
     display: flex;
     gap: 40%;
     max-width: 1364px;
     margin: 0 auto;
-    width: 100%; /* Ensure it takes full width */
+    width: 100%; 
 }
 
 .em1 {
@@ -221,13 +228,66 @@ button {
     padding: 30px 20px;
 }
 
-/* Media Queries for Responsiveness */
+.em2 button{
+    width: 130px;
+    height: 45px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 600;
+
+}
+
+.mid1{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    background-color: rgb(235, 243, 243);
+    padding: 20px 30px;
+}
+.link li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+.link h1{
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.mid2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+.mid3{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px ;
+    
+}
+.mid4{
+    padding: 20px 30px;
+}
+.mid4 p{
+    margin-bottom: 10px;
+    font-size: .9rem;
+}
+.mid4 p:last-child{
+    font-size: 1rem;
+
+}
+
+
+
 @media (max-width: 768px) {
-    /* Header */
+    
     header {
         flex-direction: column;
         height: auto;
-        padding: 10px 0; /* Remove side padding to take full width */
+        padding: 10px 0; 
         width: 100%;
     }
 
@@ -239,17 +299,16 @@ button {
         gap: 20px;
         text-align: center;
         padding: 10px 0;
-        width: 100%; /* Ensure it takes full width */
+        width: 100%; 
     }
 
     .sign ul {
         gap: 15px;
         margin-right: 0;
         padding: 10px 0;
-        width: 100%; /* Ensure it takes full width */
+        width: 100%; 
     }
 
-    /* Hero Section */
     .hero-content h1 {
         font-size: 2rem;
     }
@@ -278,23 +337,23 @@ button {
         font-size: 0.9rem;
     }
 
-    /* Event Section */
+
     .event {
-        max-width: 100%; /* Remove max-width restriction */
+        max-width: 100%; 
         padding: 0 10px;
     }
 
     .eventimg {
         flex-direction: column;
-        padding: 10px 0; /* Remove side padding */
+        padding: 10px 0; 
     }
 
     .eventimg .img1 {
         flex-basis: 100%;
-        margin: 10px 0; /* Remove side margins */
+        margin: 10px 0; 
     }
 
-    /* Event Management Section */
+    
     .eventmanage {
         flex-direction: column;
         max-width: 100%;
@@ -304,6 +363,10 @@ button {
     .em1, .em2 {
         flex-basis: 100%;
         padding: 20px;
+    }
+
+    .mid1{
+        gap: 100px;
     }
 }
 
@@ -337,5 +400,22 @@ button {
 
     .heding p {
         font-size: 0.85rem;
+    }
+
+    .mid1{
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 30px;
+    }
+    .mid2{
+        flex-direction: column;
+
+    }
+    .mid3 i{
+        font-size: .85rem;
+    }
+    .mid4 p:last-child{
+        font-size: .85rem;
+    
     }
 }
