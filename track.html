@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Collector</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            border-color: #6e8efb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.3);
+        }
+        
+        button {
+            background: linear-gradient(to right, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(110, 142, 251, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .location-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            display: none;
+        }
+        
+        .success {
+            display: block;
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            display: block;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .location-data {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            text-align: left;
+            display: none;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .privacy-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome! to you coderafroj</h1>
+        <p>Please provide your details to continue. We'll use your location to personalize your experience.</p>
+        
+        <form id="userForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" placeholder="Enter your mobile number" required>
+            </div>
+            
+            <button type="button" id="getLocationBtn">Coderafroj</button>
+            
+            <div id="locationStatus" class="location-status"></div>
+            
+            <div id="locationData" class="location-data"></div>
+            
+            <button type="submit" id="submitBtn" style="margin-top: 20px; display: none;">
+                <span id="submitText">Submit Information</span>
+            </button>
+        </form>
+        
+        <p class="privacy-note">Your information is secure and will only be used for the intended purpose.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const getLocationBtn = document.getElementById('getLocationBtn');
+            const locationStatus = document.getElementById('locationStatus');
+            const locationData = document.getElementById('locationData');
+            const submitBtn = document.getElementById('submitBtn');
+            const userForm = document.getElementById('userForm');
+            const submitText = document.getElementById('submitText');
+            
+            let userLocation = null;
+            
+            // Get user's location
+            getLocationBtn.addEventListener('click', function() {
+                getLocationBtn.disabled = true;
+                locationStatus.className = 'location-status';
+                locationStatus.innerHTML = '<div class="loader"></div> Detecting your location...';
+                locationStatus.style.display = 'block';
+                
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            // Success callback
+                            const lat = position.coords.latitude;
+                            const lng = position.coords.longitude;
+                            
+                            // Get location name using Nominatim (OpenStreetMap)
+                            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    userLocation = {
+                                        latitude: lat,
+                                        longitude: lng,
+                                        address: data.display_name
+                                    };
+                                    
+                                    locationStatus.className = 'location-status success';
+                                    locationStatus.innerHTML = 'Location detected successfully!';
+                                    
+                                    locationData.innerHTML = `
+                                        <strong>Your Location:</strong><br>
+                                        ${data.display_name}<br>
+                                        <strong>Coordinates:</strong> ${lat.toFixed(6)}, ${lng.toFixed(6)}
+                                    `;
+                                    locationData.style.display = 'block';
+                                    
+                                    submitBtn.style.display = 'block';
+                                })
+                                .catch(error => {
+                                    locationStatus.className = 'location-status error';
+                                    locationStatus.innerHTML = 'We got your coordinates but could not fetch location details.';
+                                    
+                                    userLocation = {
+                                        latitude: lat,
+                                        longitude: lng,
+                                        address: 'Coordinates: ' + lat.toFixed(6) + ', ' + lng.toFixed(6)
+                                    };
+                                    
+                                    locationData.innerHTML = `
+                                        <strong>Coordinates:</strong> ${lat.toFixed(6)}, ${lng.toFixed(6)}
+                                    `;
+                                    locationData.style.display = 'block';
+                                    
+                                    submitBtn.style.display = 'block';
+                                });
+                        },
+                        function(error) {
+                            // Error callback
+                            locationStatus.className = 'location-status error';
+                            switch(error.code) {
+                                case error.PERMISSION_DENIED:
+                                    locationStatus.innerHTML = 'Location access was denied. Please allow location access to continue.';
+                                    break;
+                                case error.POSITION_UNAVAILABLE:
+                                    locationStatus.innerHTML = 'Location information is unavailable.';
+                                    break;
+                                case error.TIMEOUT:
+                                    locationStatus.innerHTML = 'Location request timed out. Please try again.';
+                                    break;
+                                default:
+                                    locationStatus.innerHTML = 'An unknown error occurred.';
+                                    break;
+                            }
+                            getLocationBtn.disabled = false;
+                        }
+                    );
+                } else {
+                    locationStatus.className = 'location-status error';
+                    locationStatus.innerHTML = 'Geolocation is not supported by this browser.';
+                    getLocationBtn.disabled = false;
+                }
+            });
+            
+            // Form submission
+            userForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const mobile = document.getElementById('mobile').value;
+                
+                if (!name || !mobile) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                if (!userLocation) {
+                    alert('Please get your location first');
+                    return;
+                }
+                
+                // Prepare data for Formspree
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('mobile', mobile);
+                formData.append('location', JSON.stringify(userLocation));
+                formData.append('_subject', 'New User Information');
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitText.innerHTML = '<div class="loader"></div> Submitting...';
+                
+                // Send to Formspree
+                fetch('https://getform.io/f/bpjpkmzb', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .then(data => {
+                    submitText.innerHTML = 'Submitted Successfully!';
+                    setTimeout(() => {
+                        alert('Thank you! Your information has been submitted successfully.');
+                        userForm.reset();
+                        locationStatus.style.display = 'none';
+                        locationData.style.display = 'none';
+                        submitBtn.style.display = 'none';
+                        submitText.innerHTML = 'Submit Information';
+                        submitBtn.disabled = false;
+                        getLocationBtn.disabled = false;
+                    }, 1000);
+                })
+                .catch(error => {
+                    submitText.innerHTML = 'Submit Information';
+                    submitBtn.disabled = false;
+                    alert('There was an error submitting your information. Please try again.');
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
