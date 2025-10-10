@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Days Coding Challenge - Coder Afroj</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        accent: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">1000 Days Coding Challenge</h1>
+            <p class="text-lg text-gray-600 mb-2">Starting from October 8, 2025</p>
+            <p class="text-lg text-gray-600">By <a href="https://coderafroj.github.io" target="_blank" class="text-primary font-semibold hover:underline">Coder Afroj</a></p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
+            <!-- Progress Section -->
+            <div class="flex flex-col md:flex-row items-center justify-between mb-10">
+                <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-2xl font-bold text-dark mb-4">Challenge Progress</h2>
+                    <div class="relative w-64 h-64 mx-auto">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <!-- Background Circle -->
+                            <circle class="text-gray-200 stroke-current" stroke-width="10" cx="50" cy="50" r="40" fill="transparent" />
+                            <!-- Progress Circle -->
+                            <circle class="text-primary stroke-current" stroke-width="10" stroke-linecap="round" cx="50" cy="50" r="40" fill="transparent"
+                                    stroke-dasharray="251.2"
+                                    stroke-dashoffset="251.2"
+                                    id="progress-circle" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-3xl font-bold text-dark" id="progress-percent">0%</span>
+                            <span class="text-gray-500 mt-1">Completed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-6 mb-6 glow">
+                        <h3 class="text-xl font-bold mb-4">Challenge Status</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>Days Completed:</span>
+                                <span class="font-bold" id="days-completed">0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Days Remaining:</span>
+                                <span class="font-bold" id="days-remaining">1000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Current Streak:</span>
+                                <span class="font-bold" id="current-streak">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-light rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-dark mb-4">Today's Progress</h3>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-gray-600">Today's Date:</span>
+                            <span class="font-medium" id="today-date">Loading...</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-600">Challenge Day:</span>
+                            <span class="font-medium" id="challenge-day">Day 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Motivation Section -->
+            <div class="bg-gradient-to-r from-accent to-green-400 text-white rounded-xl p-6 mb-8">
+                <div class="flex items-start">
+                    <i class="fas fa-quote-left text-2xl mr-4 mt-1 opacity-70"></i>
+                    <div>
+                        <p class="text-lg mb-4" id="motivation-text">Your coding journey begins today! Every day you code brings you closer to mastery.</p>
+                        <p class="text-right font-medium">- Coder Afroj</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-dark mb-6 text-center">Challenge Milestones</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-light rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary mb-2">100</div>
+                        <div class="text-gray-600">Days</div>
+                    </div>
+                    <div class="bg-light rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary mb-2">250</div>
+                        <div class="text-gray-600">Days</div>
+                    </div>
+                    <div class="bg-light rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary mb-2">500</div>
+                        <div class="text-gray-600">Days</div>
+                    </div>
+                    <div class="bg-light rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold text-primary mb-2">1000</div>
+                        <div class="text-gray-600">Days</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center">
+                <a href="https://coderafroj.github.io" target="_blank" class="inline-flex items-center bg-primary hover:bg-secondary text-white font-medium py-3 px-6 rounded-lg transition duration-300">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    Visit My Portfolio
+                </a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm">
+            <p>Designed with ❤️ by <a href="https://coderafroj.github.io" target="_blank" class="text-primary hover:underline">Coder Afroj</a></p>
+            <p class="mt-1">Follow the 1000 days coding challenge journey</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set challenge start date
+            const startDate = new Date('2025-10-08');
+            const totalDays = 1000;
+            
+            // Update the display every second
+            function updateCountdown() {
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                
+                // Format today's date
+                document.getElementById('today-date').textContent = today.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // Calculate days completed and remaining
+                let daysCompleted = 0;
+                let daysRemaining = totalDays;
+                
+                if (today >= startDate) {
+                    // Calculate the difference in days
+                    const timeDiff = today.getTime() - startDate.getTime();
+                    daysCompleted = Math.floor(timeDiff / (1000 * 3600 * 24)) + 1;
+                    
+                    // Make sure we don't exceed total days
+                    if (daysCompleted > totalDays) {
+                        daysCompleted = totalDays;
+                    }
+                    
+                    daysRemaining = totalDays - daysCompleted;
+                }
+                
+                // Update the display
+                document.getElementById('days-completed').textContent = daysCompleted;
+                document.getElementById('days-remaining').textContent = daysRemaining;
+                document.getElementById('current-streak').textContent = daysCompleted;
+                document.getElementById('challenge-day').textContent = `Day ${daysCompleted}`;
+                
+                // Calculate and update progress
+                const progressPercent = (daysCompleted / totalDays) * 100;
+                document.getElementById('progress-percent').textContent = `${Math.round(progressPercent)}%`;
+                
+                // Update progress circle
+                const circle = document.getElementById('progress-circle');
+                const circumference = 2 * Math.PI * 40;
+                const offset = circumference - (progressPercent / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+                
+                // Update motivation text based on progress
+                updateMotivationText(progressPercent, daysCompleted);
+            }
+            
+            function updateMotivationText(progress, days) {
+                const motivationElement = document.getElementById('motivation-text');
+                let text = '';
+                
+                if (days === 0) {
+                    text = "Your coding journey begins today! Every day you code brings you closer to mastery.";
+                } else if (days < 100) {
+                    text = `You've completed ${days} days! Consistency is key. Keep building that coding habit!`;
+                } else if (days < 250) {
+                    text = `Amazing! ${days} days of coding. You're building a solid foundation. Keep going!`;
+                } else if (days < 500) {
+                    text = `Incredible progress! ${days} days shows serious dedication. You're becoming a proficient coder.`;
+                } else if (days < 750) {
+                    text = `Wow! ${days} days of coding. You're mastering your craft and building impressive skills.`;
+                } else if (days < 1000) {
+                    text = `Almost there! ${days} days completed. You're an inspiration to aspiring developers.`;
+                } else {
+                    text = "Congratulations! You've completed the 1000-day coding challenge. You're a true coding master!";
+                }
+                
+                motivationElement.textContent = text;
+            }
+            
+            // Initial update
+            updateCountdown();
+            
+            // Update every minute (to handle day changes)
+            setInterval(updateCountdown, 60000);
+        });
+    </script>
+</body>
+</html>
