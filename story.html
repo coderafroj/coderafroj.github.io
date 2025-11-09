@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Story Editor — Coderinnu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(160deg, #ff758c 0%, #ff7eb3 100%);
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #editor {
+      flex: 1;
+      width: 100%;
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 1rem;
+      padding: 1.2rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      outline: none;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+    #editor:focus {
+      background-color: #fff;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+    .btn {
+      background: #ff527b;
+      color: white;
+      font-weight: 600;
+      border-radius: 0.75rem;
+      padding: 0.8rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+    .btn:active {
+      transform: scale(0.97);
+    }
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      padding: 0.9rem 1.5rem;
+      border-radius: 9999px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body class="p-4">
+  <div class="text-center text-white text-3xl font-bold mb-4 drop-shadow-lg">Coderinnu ❤️ Love Story</div>
+  <div id="editor" contenteditable="true" placeholder="Write your story here..."></div>
+  <div class="flex justify-center mt-4 gap-4">
+    <button id="saveLocal" class="btn">💾 Save Local</button>
+    <button id="saveGitHub" class="btn bg-pink-600">☁️ Save GitHub</button>
+  </div>
+  <input id="token" type="password" placeholder="GitHub Token" class="mt-4 w-full rounded-lg p-3 outline-none border-none text-sm" />
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const editor = document.getElementById('editor');
+    const toast = document.getElementById('toast');
+    const tokenInput = document.getElementById('token');
+
+    const repoInfo = {
+      owner: 'coderafroj',
+      repo: 'Photos',
+      path: 'Afroj/w/m/p/Coderinnu/love-story.md'
+    };
+
+    const showToast = (msg) => {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    };
+
+    const getTodayHeading = () => {
+      const now = new Date();
+      const options = { day: 'numeric', month: 'short', year: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-GB', options);
+      return `\n\n### ${dateStr}\n`;
+    };
+
+    const loadLocal = () => {
+      const data = localStorage.getItem('loveStory');
+      if (data) editor.innerHTML = data;
+    };
+
+    const saveLocal = () => {
+      const oldData = localStorage.getItem('loveStory') || '';
+      const newData = oldData + getTodayHeading() + editor.innerHTML;
+      localStorage.setItem('loveStory', newData);
+      showToast('Appended locally ✨');
+    };
+
+    const saveGitHub = async () => {
+      const token = tokenInput.value.trim();
+      if (!token) return showToast('Enter GitHub Token');
+      const content = editor.innerHTML.trim();
+      if (!content) return showToast('Write something first');
+
+      const url = `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}/contents/${repoInfo.path}`;
+      try {
+        const getRes = await fetch(url, { headers: { Authorization: `token ${token}` } });
+        let sha = null;
+        let oldContent = '';
+        if (getRes.ok) {
+          const data = await getRes.json();
+          sha = data.sha;
+          oldContent = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+        }
+        const newText = oldContent + getTodayHeading() + content;
+        const encoded = btoa(unescape(encodeURIComponent(newText)));
+        const body = {
+          message: 'Append new story entry',
+          content: encoded,
+          sha
+        };
+        const res = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            Authorization: `token ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        if (res.ok) showToast('Appended to GitHub 💖');
+        else showToast('GitHub save failed');
+      } catch (e) {
+        showToast('Error saving to GitHub');
+      }
+    };
+
+    document.getElementById('saveLocal').onclick = saveLocal;
+    document.getElementById('saveGitHub').onclick = saveGitHub;
+
+    loadLocal();
+  </script>
+</body>
+</html>
