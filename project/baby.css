@@ -48,7 +48,7 @@ header {
 
 .hero {
     height: 100vh;
-    background: url(baby.jpg) no-repeat;
+    background: url(.. /image/baby.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 4px 8px white;
@@ -365,3 +365,4 @@ header {
     
     
 }
+
