@@ -7,187 +7,227 @@
     <meta name="google-site-verification" content="PvJZd0RybnOh7Gpu_v23FTzVpdtL6NEiDm8t9G9Ra9o" />
     <link rel="icon" type="image/png" href="https://i.postimg.cc/8cTsy1vn/Ckderafroj.png">
 
-    <title>Portfolio</title>
+    <title>Afroj Ahmad — Portfolio</title>
+    <meta name="description" content="Afroj Ahmad — Offensive Security & Network Security enthusiast, bug hunter, and CS teacher.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src="script.js"></script>
 </head>
 
 <body>
+
     <header>
-        <a href="coderafroj.github.io" class="logo">C O D E R A F R O J</a>
+        <a href="#home" class="logo"><span class="prompt">afroj@security</span><span class="tilde">:~$</span> <span class="cursor"></span></a>
+
         <nav class="desktop">
-            <a href="#home" class="active">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#experience">Experience</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="active">home</a>
+            <a href="#projects">projects</a>
+            <a href="#skills">skills</a>
+            <a href="#experience">experience</a>
+            <a href="#contact">contact</a>
         </nav>
+
         <div class="dropdown">
-            <button id='dropdownbtn' class='dropbtn'><i class="fa-solid fa-bars hamburg"></i></button>
+            <button id="dropdownbtn" class="dropbtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
             <div id="dropdowncontent" class="dropdown-content">
-                <a href="#home">Home</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">Experience</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
+                <a href="#home">home</a>
+                <a href="#projects">projects</a>
+                <a href="#skills">skills</a>
+                <a href="#experience">experience</a>
+                <a href="#contact">contact</a>
             </div>
         </div>
     </header>
-    <section class='home' id="home">
-        <div class="homeing">
-            <img src="IMG20250827121210-1756748353176.jpg " alt="">
-        </div>
-        <div class="home-content">
-            <h1>Hi It's <span>Afroj</span></h1>
-            <div class="typewritter" id = "now-active">
-                <h3>I'm a <span class="typewritter-text"></span><label for=""></label> </h3>
+
+    <!-- ======================= HOME ======================= -->
+    <section class="home" id="home">
+        <div class="wrap home-wrap">
+
+            <div class="term-card hero-term">
+                <div class="term-titlebar">
+                    <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+                    <span class="term-path">afroj@kali:~ $ ./portfolio.sh</span>
+                </div>
+                <div class="term-body">
+                    <p class="term-line"><span class="prompt">$</span> whoami</p>
+                    <h1>Afroj Ahmad</h1>
+
+                    <p class="term-line"><span class="prompt">$</span> ./current_role.sh --loop</p>
+                    <div class="typewritter">
+                        <h3>&gt; <span class="typewritter-text"></span><label></label></h3>
+                    </div>
+
+                    <p class="bio">I'm actively seeking <b>internship or entry-level</b> opportunities. With
+                        <b>hands-on experience in automation</b> and practical use of <b>SIEM tools</b>, I also do
+                        <b>freelancing and bug hunting</b>. My focus spans <b>Offensive Security, Network Security,
+                            and Web Security Auditing.</b>
+                    </p>
+
+                    <div class="social_icons">
+                        <a href="https://www.linkedin.com/in/afroj-ahmad-6a626729a" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/Bytecore-website/bytecorecomputercentre" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://medium.com/Coderafroj" aria-label="Medium"><i class="fa-brands fa-medium"></i></a>
+                        <a href="https://x.com/Coderafroj" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+
+                    <a href="mailto:coderafroj@gmail.com" class="btn">$ send --email</a>
+                </div>
             </div>
-            <p>I'm actively seeking <b>internship or entry-level</b> job opportunities. With <b>hands-on experience in automation</b> and practical application of <b>SEIM skills</b>, I also engage in <b>freelancing and bug hunting.</b> My expertise spans <b>Offensive Security, Network Security and Web Security Auditing.</b></p>
-            <div class="social_icons">
-                <a href="https://www.linkedin.com/in/afroj-ahmad-6a626729a"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/Bytecore-website/bytecorecomputercentre"><i class="fa-brands fa-github"></i></a>
-                <a href="https://medium.com/Coderafroj"><i class="fa-brands fa-medium"></i></a>
-                <a href="https://x.com/Coderafroj"><i class="fa-brands fa-x-twitter"></i></a>
+
+            <div class="hero-photo">
+                <div class="scan-ring"></div>
+                <div class="photo-frame">
+                    <img src="IMG20250827121210-1756748353176.jpg" alt="Afroj Ahmad">
+                </div>
+                <span class="corner c-tl"></span><span class="corner c-tr"></span>
+                <span class="corner c-bl"></span><span class="corner c-br"></span>
+                <div class="status-pill"><span class="status-dot"></span> open to work</div>
             </div>
-            <a href="mailto:coderafroj@gmail.com" class="btn">Email Me!</a>
+
         </div>
     </section>
-    <hr class="line">
-    <section id="projects" class="project">
-        <div class="hiddentxt">
-            <div class="title">
-                <h1>PROJECTS</h1>
+
+    <!-- ======================= PROJECTS ======================= -->
+    <section id="projects" class="section-block">
+        <div class="wrap hiddentxt">
+            <div class="sec-head">
+                <p class="eyebrow"><span class="prompt">root@afroj:~$</span> ls -la ./projects</p>
+                <h2>Projects</h2>
             </div>
+
             <div class="collect">
-             <div class="p1">
-                 <h1>Project #1</h1>
-                 <img src="image/Ai.webp">
-                 <h2>Artificeal Inteligence- <a href="project/blinkit.html">Github</a></h2>
+                <div class="p1">
+                    <span class="ptag">project_01.log</span>
+                    <div class="pimg"><img src="image/Ai.webp" alt="AI project"></div>
+                    <h1>Artificial Intelligence</h1>
+                    <a href="project/blinkit.html" class="plink">view source <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="p1">
-                    <h1>Project #2</h1>
-                    <img src="image/Ml.webp">
-                    <h2>Evigo.in- <a href="project/evego.html">Github</a></h2>
+                    <span class="ptag">project_02.log</span>
+                    <div class="pimg"><img src="image/Ml.webp" alt="Machine Learning project"></div>
+                    <h1>Evigo.in</h1>
+                    <a href="project/evego.html" class="plink">view source <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="p1">
-                    <h1>Project #3</h1>
-                    <img src="https://i.postimg.cc/C5txzdTX/Screenshot-20250518-194303-3.png">
-                      <h2>Profile card <a href="project/profileCard.html">Github</a></h2>
-                
-             </div>
+                    <span class="ptag">project_03.log</span>
+                    <div class="pimg"><img src="https://i.postimg.cc/C5txzdTX/Screenshot-20250518-194303-3.png" alt="Profile card project"></div>
+                    <h1>Profile Card</h1>
+                    <a href="project/profileCard.html" class="plink">view source <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
+    </section>
 
-    </section>
-    <hr class="line">
-    <section class="skills" id="skills">
-        <div class="hiddentxt">
-        <div class="title">
-            <h1>SKILLS</h1>
-        </div>
-        <div class="skillset">
-            <svg width="100%" height="100%" viewBox="0 0 1080 1200" preserveAspectRatio="xMidYMid meet">
-                <!-- Cybersecurity -->
-                <text id="stitle" x="20%" y="6%">Cybersecurity</text>
-        
-                <text x="10%" y="16%">Linux</text>
-                <text x="22%" y="16%">SEIM TOOLS</text>
-                <text x="40%" y="16%">WAPT</text>
-                <text x="55%" y="16%">Network Security</text>
-                <text x="78%" y="16%">Offensive Security</text>
-        
-                <line x1="50%" y1="8%" x2="50%" y2="25%" stroke="black" stroke-width="2"></line>
-        
-                <!-- Programming -->
-                <text id="stitle" x="20%" y="31%">Programming</text>
-        
-                <text x="10%" y="42%">Python</text>
-                <text x="37%" y="42%">Java</text>
-                <text x="60%" y="42%">C</text>
-                <text x="83%" y="42%">C++</text>
-        
-                <line x1="50%" y1="50%" x2="50%" y2="33%" stroke="black" stroke-width="2"></line>
-        
-                <!-- Networking -->
-                <text id="stitle" x="25%" y="56%">Networking</text>
-        
-                <text x="10%" y="67%">TCP/IP</text>
-                <text x="37%" y="67%">Firewall</text>
-                <text x="55%" y="67%">Ports & Protocols</text>
-                <text x="80%" y="67%">Packet Analysis</text>
-        
-                <line x1="50%" y1="75%" x2="50%" y2="58%" stroke="black" stroke-width="2"></line>
-        
-                <!-- Miscellaneous -->
-                <text id="stitle" x="20%" y="81%">Miscellaneous</text>
-        
-                <text x="10%" y="92%">MERN STACK</text>
-                <text x="37%" y="92%">Web Designing</text>
-                <text x="60%" y="92%">Automation</text>
-                <text x="83%" y="92%">Database</text>
-            </svg>
-        </div>
-    </section>
-    <hr class="line" id="sline">
-    <section class="experience" id="experience">
-        <div class="hiddentxt">
-        <div class="title">
-            <h1>Experience</h1>
-        </div>
-        <div class="detail">
-            <h1>Front end</h1>
-            <h2><b>From: </b>March,2025 <b>To: </b>Present</h2>
-            <h2><b>At: </b>Apna College</h2>
-            <p>html is hypertext merkup language <b>Structure Webpage leyout</b>
-                <br>Cascading style sheet <b>Web Design</b>
-            </p>
-        </div>
-        <div class="detail">
-            <h1>Computer Teacher</h1>
-            <h2><b>From: </b>october,2024 <b>To: </b>Present</h2>
-            <h2><b>At: </b>Vintech Computer Education</h2>
-            <p>Taught foundational and advance CS concepts effectively to students.
-                <br>Teaching lessons involved concepts like <b>Cybersecurity, Networking, Programing, Operating Systems and Databases.</b>
-                <br>Designed interactive lessons and hands-on coding projects.
-                <br>Encouraged <b>Logical Thinking</b> and <b>Problem Solving</b> among students.
-            </p>
-        </div>
-        </div>
-    </section>
-    <hr class="line">
-  
-    <hr class="line">
-    <section class="contact" id="contact">
-        <div class="hiddentxt">
-          <div class="title">
-              <h1>Contact Form</h1>
-          </div>
-          <form action="https://getform.io/f/bpjpkmzb" method="POST" class="cform">
-            <div class="fgroup">
-                <label for="name">Your Name</label>
-                <input type="text" id="uname" name="name" placeholder="Please Input Your Name" required>
+    <!-- ======================= SKILLS ======================= -->
+    <section class="section-block alt" id="skills">
+        <div class="wrap hiddentxt">
+            <div class="sec-head">
+                <p class="eyebrow"><span class="prompt">root@afroj:~$</span> cat skills.log</p>
+                <h2>Skills</h2>
             </div>
-            <div class="fgroup">
-                <label for="email">Your Email</label>
-                <input type="email" id="uemail" name="email" placeholder="Please Input Your Email" required>
+
+            <div class="skill-groups">
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-shield-halved"></i> Cybersecurity</h4>
+                    <div class="pill-row">
+                        <span class="pill">Linux</span>
+                        <span class="pill">SIEM Tools</span>
+                        <span class="pill">WAPT</span>
+                        <span class="pill">Network Security</span>
+                        <span class="pill">Offensive Security</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-code"></i> Programming</h4>
+                    <div class="pill-row">
+                        <span class="pill">Python</span>
+                        <span class="pill">Java</span>
+                        <span class="pill">C</span>
+                        <span class="pill">C++</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-network-wired"></i> Networking</h4>
+                    <div class="pill-row">
+                        <span class="pill">TCP/IP</span>
+                        <span class="pill">Firewall</span>
+                        <span class="pill">Ports &amp; Protocols</span>
+                        <span class="pill">Packet Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-layer-group"></i> Miscellaneous</h4>
+                    <div class="pill-row">
+                        <span class="pill">MERN Stack</span>
+                        <span class="pill">Web Designing</span>
+                        <span class="pill">Automation</span>
+                        <span class="pill">Database</span>
+                    </div>
+                </div>
             </div>
-            <div class="fgroup">
-                <label for="name">Your Message</label>
-                <textarea id="umessage" name="message" placeholder="I am utilizing a 3rd party service for this form, so please do not provide any information you consider sensitive." required></textarea>
-            </div>
-            <button type="submit" class="fbtn">Send</button>
-          </form>
         </div>
     </section>
+
+    <!-- ======================= EXPERIENCE ======================= -->
+    <section class="section-block" id="experience">
+        <div class="wrap hiddentxt">
+            <div class="sec-head">
+                <p class="eyebrow"><span class="prompt">root@afroj:~$</span> cat experience.log</p>
+                <h2>Experience</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="tl-item">
+                    <span class="tl-date">Mar 2025 — Present</span>
+                    <h3>Front End Developer</h3>
+                    <p class="tl-org">at Apna College</p>
+                    <p>HTML — hypertext markup language, <b>structuring webpage layout</b>.<br>
+                        CSS — cascading style sheets, <b>web design</b>.</p>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-date">Oct 2024 — Present</span>
+                    <h3>Computer Teacher</h3>
+                    <p class="tl-org">at Vintech Computer Education</p>
+                    <p>Taught foundational and advanced CS concepts effectively to students.<br>
+                        Lessons covered <b>Cybersecurity, Networking, Programming, Operating Systems and Databases</b>.<br>
+                        Designed interactive lessons and hands-on coding projects.<br>
+                        Encouraged <b>logical thinking</b> and <b>problem solving</b> among students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="section-block alt" id="contact">
+        <div class="wrap hiddentxt">
+            <div class="sec-head">
+                <p class="eyebrow"><span class="prompt">root@afroj:~$</span> ./contact.sh</p>
+                <h2>Get in touch</h2>
+            </div>
+
+            <form action="https://getform.io/f/bpjpkmzb" method="POST" class="cform">
+                <div class="fgroup">
+                    <label for="uname">&gt; name</label>
+                    <input type="text" id="uname" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="fgroup">
+                    <label for="uemail">&gt; email</label>
+                    <input type="email" id="uemail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="fgroup">
+                    <label for="umessage">&gt; message</label>
+                    <textarea id="umessage" name="message" placeholder="I'm using a 3rd party service for this form — please avoid sensitive info." required></textarea>
+                </div>
+                <button type="submit" class="fbtn">$ send --message</button>
+            </form>
+        </div>
+    </section>
+
     <footer class="footer">
-        <div class="text">
-            <p>&copy; 2025 <a href="coderafroj.github.io">Afroj.</a> All rights reserved.</p>
-        </div>
-    </footer>    
-</body>
+        <p><span class="prompt">root@afroj:~$</span> exit &nbsp;•&nbsp; © 2025 <a href="https://coderafroj.github.io">Afroj</a>. All rights reserved.</p>
+    </footer>
 
+</body>
 </html>
