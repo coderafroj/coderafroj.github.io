@@ -1,97 +1,89 @@
-const text =[
-    "Student",
-    "Cyber Security Aspirant",
-    "Bug Hunter",
-    "CS Teacher"
-]
+// ---------- typewriter ----------
+const roles = ["Student", "Cyber Security Aspirant", "Bug Hunter", "CS Teacher"];
+let speed = 100;
+let textEl;
+let roleIndex = 0;
+let charIndex = 0;
 
-let speed =100;
-
-const textele=document.querySelector(".typewritter-text");
-
-let texti=0;
-let chari=0;
-
-function typewritter(){
-    if (chari<text[texti].length){
-        textele.innerHTML+=text[texti].charAt(chari);
-        chari++;
-        setTimeout(typewritter,speed);
-    }
-    else{
-        setTimeout(erase,2000)
+function typewriter() {
+    if (charIndex < roles[roleIndex].length) {
+        textEl.innerHTML += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typewriter, speed);
+    } else {
+        setTimeout(erase, 2000);
     }
 }
 
-function erase(){
-    if (textele.innerHTML.length>0){
-        textele.innerHTML = textele.innerHTML.slice(0,-1);
-        setTimeout(erase,50);
-    }
-    else{
-        texti=(texti +1)%text.length;
-        chari=0;
-        setTimeout(typewritter,500);
-    }
-}
-
-window.onload=typewritter();
-
-const dropdownbtn = document.getElementById("dropdownbtn");
-const dropdowncon = document.getElementById("dropdowncontent");
-
-dropdownbtn.addEventListener('click',drop);
-
-function drop(){
-    if (dropdowncon.style.display==="none"){
-        dropdowncon.style.display="block"
-    }
-    else{
-        dropdowncon.style.display="none"
+function erase() {
+    if (textEl.innerHTML.length > 0) {
+        textEl.innerHTML = textEl.innerHTML.slice(0, -1);
+        setTimeout(erase, 50);
+    } else {
+        roleIndex = (roleIndex + 1) % roles.length;
+        charIndex = 0;
+        setTimeout(typewriter, 500);
     }
 }
 
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((entry)=>{
-        if (entry.isIntersecting){
-            entry.target.classList.add('show');
+// ---------- mobile dropdown ----------
+function setupDropdown() {
+    const dropdownbtn = document.getElementById("dropdownbtn");
+    const dropdowncon = document.getElementById("dropdowncontent");
+    if (!dropdownbtn || !dropdowncon) return;
+
+    dropdownbtn.addEventListener("click", () => {
+        dropdowncon.style.display = (dropdowncon.style.display === "block") ? "none" : "block";
+    });
+
+    dropdowncon.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => { dropdowncon.style.display = "none"; });
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!dropdownbtn.contains(e.target) && !dropdowncon.contains(e.target)) {
+            dropdowncon.style.display = "none";
         }
-        else{
-            entry.target.classList.remove('show');
-        }
-    })
-});
+    });
+}
 
-const hiddentxt = document.querySelectorAll('.hiddentxt');
-hiddentxt.forEach((txt)=> observer.observe(txt));
+// ---------- scroll reveal ----------
+function setupScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle("show", entry.isIntersecting);
+        });
+    }, { threshold: 0.15 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll("section");
-    const links = document.querySelectorAll("nav a");
-    const statusElement = document.getElementById("now-active");
+    document.querySelectorAll(".hiddentxt").forEach((el) => observer.observe(el));
+}
+
+// ---------- active nav link on scroll ----------
+function setupActiveNav() {
+    const sections = document.querySelectorAll("section[id]");
+    const links = document.querySelectorAll("nav a, .dropdown-content a");
 
     function updateActiveLink() {
-        let currentSection = sections[0].getAttribute("id");
-
+        let current = sections[0] ? sections[0].id : "";
         sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (scrollY >= sectionTop - sectionHeight / 3) {
-                currentSection = section.getAttribute("id");
-            }
+            const top = section.offsetTop;
+            const height = section.clientHeight;
+            if (scrollY >= top - height / 3) current = section.id;
         });
         links.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href").includes(currentSection)) {
-                link.classList.add("active");
-            }
+            link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
         });
-        if (currentSection === "home") {
-            statusElement.id = "now-active";
-        } else {
-            statusElement.id = "now-deactive";
-        }
     }
+
     window.addEventListener("scroll", updateActiveLink);
+    updateActiveLink();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    textEl = document.querySelector(".typewritter-text");
+    if (textEl) typewriter();
+
+    setupDropdown();
+    setupScrollReveal();
+    setupActiveNav();
 });
