@@ -1,89 +1,136 @@
-// ---------- typewriter ----------
-const roles = ["Student", "Cyber Security Aspirant", "Bug Hunter", "CS Teacher"];
-let speed = 100;
-let textEl;
+// ---------- Typewriter Effect ----------
+const roles = [
+  "Cyber Security Aspirant", 
+  "Bug Hunter", 
+  "CS Teacher", 
+  "Full Stack Developer"
+];
 let roleIndex = 0;
 let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 100;
 
 function typewriter() {
-    if (charIndex < roles[roleIndex].length) {
-        textEl.innerHTML += roles[roleIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typewriter, speed);
-    } else {
-        setTimeout(erase, 2000);
-    }
+  const textEl = document.getElementById("typewriter-text");
+  if (!textEl) return;
+
+  const currentRole = roles[roleIndex];
+  
+  if (isDeleting) {
+    textEl.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+    typeSpeed = 50; // Faster when deleting
+  } else {
+    textEl.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+    typeSpeed = 100;
+  }
+
+  // If word is complete
+  if (!isDeleting && charIndex === currentRole.length) {
+    typeSpeed = 2000; // Pause at the end
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    roleIndex = (roleIndex + 1) % roles.length;
+    typeSpeed = 500; // Pause before typing next word
+  }
+
+  setTimeout(typewriter, typeSpeed);
 }
 
-function erase() {
-    if (textEl.innerHTML.length > 0) {
-        textEl.innerHTML = textEl.innerHTML.slice(0, -1);
-        setTimeout(erase, 50);
-    } else {
-        roleIndex = (roleIndex + 1) % roles.length;
-        charIndex = 0;
-        setTimeout(typewriter, 500);
-    }
-}
-
-// ---------- mobile dropdown ----------
-function setupDropdown() {
-    const dropdownbtn = document.getElementById("dropdownbtn");
-    const dropdowncon = document.getElementById("dropdowncontent");
-    if (!dropdownbtn || !dropdowncon) return;
-
-    dropdownbtn.addEventListener("click", () => {
-        dropdowncon.style.display = (dropdowncon.style.display === "block") ? "none" : "block";
-    });
-
-    dropdowncon.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => { dropdowncon.style.display = "none"; });
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!dropdownbtn.contains(e.target) && !dropdowncon.contains(e.target)) {
-            dropdowncon.style.display = "none";
-        }
-    });
-}
-
-// ---------- scroll reveal ----------
+// ---------- Scroll Reveal Animations ----------
 function setupScrollReveal() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            entry.target.classList.toggle("show", entry.isIntersecting);
-        });
-    }, { threshold: 0.15 });
+  const revealElements = document.querySelectorAll('.reveal');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // Optional: Stop observing once revealed if you only want it to animate once
+        // observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
 
-    document.querySelectorAll(".hiddentxt").forEach((el) => observer.observe(el));
+  revealElements.forEach(el => observer.observe(el));
 }
 
-// ---------- active nav link on scroll ----------
-function setupActiveNav() {
-    const sections = document.querySelectorAll("section[id]");
-    const links = document.querySelectorAll("nav a, .dropdown-content a");
+// ---------- Navbar & Mobile Menu ----------
+function setupNavbar() {
+  const navbar = document.getElementById('navbar');
+  const menuBtn = document.getElementById('menu-btn');
+  const navlinks = document.getElementById('navlinks');
+  const links = document.querySelectorAll('.navlinks a');
+  const sections = document.querySelectorAll('section, header');
 
-    function updateActiveLink() {
-        let current = sections[0] ? sections[0].id : "";
-        sections.forEach((section) => {
-            const top = section.offsetTop;
-            const height = section.clientHeight;
-            if (scrollY >= top - height / 3) current = section.id;
-        });
-        links.forEach((link) => {
-            link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-        });
+  // Sticky Nav Background
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.style.background = 'var(--bg-surface-glass)';
+      navbar.style.borderBottom = '1px solid var(--border-light)';
+    } else {
+      navbar.style.background = 'transparent';
+      navbar.style.borderBottom = '1px solid transparent';
     }
+  });
 
-    window.addEventListener("scroll", updateActiveLink);
-    updateActiveLink();
+  // Mobile Menu Toggle
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      navlinks.classList.toggle('menu-open');
+      const icon = menuBtn.querySelector('i');
+      if (navlinks.classList.contains('menu-open')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+  }
+
+  // Close mobile menu when a link is clicked
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      navlinks.classList.remove('menu-open');
+      if(menuBtn) {
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+  });
+
+  // Active Link Highlight on Scroll
+  function updateActiveLink() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= (sectionTop - sectionHeight / 3)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveLink);
+  updateActiveLink();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    textEl = document.querySelector(".typewritter-text");
-    if (textEl) typewriter();
-
-    setupDropdown();
-    setupScrollReveal();
-    setupActiveNav();
+// ---------- Initialize All ----------
+document.addEventListener('DOMContentLoaded', () => {
+  typewriter();
+  setupScrollReveal();
+  setupNavbar();
 });
