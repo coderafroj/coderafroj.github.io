@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Bytecore Computer Centre — Result</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#173B5E;
+    --navy-dark:#0F2C4A;
+    --ink:#1C2530;
+    --muted:#7C8798;
+    --line:#E4E8EE;
+    --bg:#F5F7FA;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    display:flex; flex-direction:column; align-items:center;
+    padding:32px 18px 40px;
+  }
+
+  .brand{ display:flex; flex-direction:column; align-items:center; margin-bottom:18px; text-align:center; }
+  .brand-mark{
+    width:52px; height:52px; border-radius:14px; background:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:19px; color:var(--white);
+    margin-bottom:12px;
+  }
+  .brand h1{ font-family:'Poppins',sans-serif; font-size:17px; font-weight:600; margin:0; color:var(--navy-dark); }
+  .brand p{ margin:3px 0 0; font-size:12.5px; color:var(--muted); letter-spacing:0.2px; }
+
+  /* ---------- Topper banner ---------- */
+  .topper-banner{
+    width:100%; max-width:400px;
+    background:var(--navy);
+    color:var(--white);
+    border-radius:14px;
+    padding:12px 16px;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .topper-banner svg{ width:20px; height:20px; flex-shrink:0; }
+  .topper-banner .tb-text{ font-size:12.5px; line-height:1.4; }
+  .topper-banner .tb-text b{ font-family:'Poppins',sans-serif; font-weight:600; }
+
+  /* ---------- Top 3 ---------- */
+  .top3{
+    width:100%; max-width:400px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+    margin-bottom:18px;
+  }
+  .top3-title{
+    font-family:'Poppins',sans-serif; font-size:12px; font-weight:600;
+    color:var(--muted); letter-spacing:0.4px; text-transform:uppercase;
+    margin:0 0 10px;
+  }
+  .top3-row{
+    display:flex; align-items:center; gap:10px;
+    padding:7px 0;
+  }
+  .top3-row + .top3-row{ border-top:1px dashed var(--line); }
+  .top3-rank{
+    width:24px; height:24px; border-radius:50%;
+    background:var(--bg); color:var(--navy-dark);
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:12px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .top3-row:nth-child(1) .top3-rank{ background:var(--navy); color:var(--white); }
+  .top3-name{ flex:1; font-size:13.5px; font-weight:500; }
+  .top3-marks{ font-family:'Poppins',sans-serif; font-size:13px; font-weight:600; color:var(--navy-dark); }
+
+  /* ---------- Search card ---------- */
+  .card{
+    width:100%; max-width:400px; background:var(--white);
+    border:1px solid var(--line); border-radius:18px; padding:26px 22px;
+    box-shadow:0 8px 28px rgba(23,59,94,0.08);
+    position:relative;
+  }
+
+  .search-row{ display:flex; gap:8px; }
+  .search-row input{
+    flex:1; background:var(--bg); border:1.5px solid var(--line); color:var(--ink);
+    padding:13px 15px; border-radius:12px; font-size:15px; font-family:'Inter',sans-serif;
+    outline:none; transition:border-color .15s ease;
+  }
+  .search-row input::placeholder{ color:#A6AFBC; }
+  .search-row input:focus{ border-color:var(--navy); }
+  .search-row button{
+    width:50px; flex-shrink:0; border:none; border-radius:12px; cursor:pointer;
+    background:var(--navy); display:flex; align-items:center; justify-content:center;
+    transition:opacity .12s ease;
+  }
+  .search-row button:active{ opacity:0.8; }
+  .search-row button svg{ width:19px; height:19px; }
+
+  .suggestions{
+    position:absolute; left:22px; right:22px; top:80px;
+    background:var(--white); border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 12px 30px rgba(23,59,94,0.14);
+    overflow:hidden; z-index:5; display:none;
+  }
+  .suggestions.show{ display:block; }
+  .suggestions button{
+    width:100%; text-align:left; background:var(--white); border:none;
+    color:var(--ink); padding:11px 14px; font-size:14px; cursor:pointer;
+    font-family:'Inter',sans-serif; display:flex; justify-content:space-between; align-items:center;
+  }
+  .suggestions button + button{ border-top:1px solid var(--line); }
+  .suggestions button:hover{ background:var(--bg); }
+  .suggestions button span.sm{ font-size:12px; color:var(--muted); }
+
+  /* ---------- Result ---------- */
+  .result{ margin-top:22px; display:none; animation:rise .35s ease; }
+  .result.show{ display:block; }
+  @keyframes rise{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .result-top{
+    display:flex; align-items:center; gap:16px;
+    padding-bottom:18px; margin-bottom:16px; border-bottom:1px solid var(--line);
+  }
+  .ring-wrap{ position:relative; width:96px; height:96px; flex-shrink:0; }
+  .ring-wrap svg{ transform:rotate(-90deg); }
+  .ring-bg{ fill:none; stroke:var(--line); stroke-width:8; }
+  .ring-fg{ fill:none; stroke:var(--navy); stroke-width:8; stroke-linecap:round; transition:stroke-dashoffset 0.9s cubic-bezier(.2,.8,.2,1); }
+  .ring-center{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .ring-score{ font-family:'Poppins',sans-serif; font-size:19px; font-weight:700; line-height:1; color:var(--navy-dark); }
+  .ring-total{ font-size:11px; color:var(--muted); margin-top:2px; }
+
+  .result-name{ font-family:'Poppins',sans-serif; font-size:18px; font-weight:600; margin:0 0 4px; color:var(--navy-dark); }
+  .result-pct{ font-size:12.5px; color:var(--muted); }
+
+  .feedback{ background:var(--bg); border-radius:12px; padding:15px 16px; }
+  .feedback-title{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14px; margin:0 0 6px; color:var(--navy-dark); }
+  .feedback p{ margin:0; font-size:13.5px; line-height:1.6; color:#4B5666; }
+
+  .not-found{
+    display:none; margin-top:20px; text-align:center; padding:20px 10px;
+    border:1px dashed var(--line); border-radius:12px; color:var(--muted); font-size:13.5px;
+    animation:rise .3s ease;
+  }
+  .not-found.show{ display:block; }
+  .not-found strong{ color:var(--ink); }
+
+  .footer-note{ max-width:400px; width:100%; text-align:center; margin-top:20px; font-size:11.5px; color:#A6AFBC; }
+</style>
+</head>
+<body>
+
+  <div class="brand">
+    <div class="brand-mark">BC</div>
+    <h1>Bytecore Computer Centre</h1>
+    <p>Test Result</p>
+  </div>
+
+  <div class="topper-banner" id="topperBanner">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><path d="M8 21h8M12 17v4M6 3h12v3a6 6 0 01-12 0V3z"/><path d="M6 5H3a3 3 0 003 3M18 5h3a3 3 0 01-3 3"/></svg>
+    <div class="tb-text">Top Scorer — <b id="topperText">—</b></div>
+  </div>
+
+  <div class="top3">
+    <p class="top3-title">Top 3</p>
+    <div id="top3List"></div>
+  </div>
+
+  <div class="card">
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Enter your name" autocomplete="off" />
+      <button id="searchBtn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#FFFFFF" stroke-width="2.4"/><path d="M21 21l-4.3-4.3" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="suggestions" id="suggestions"></div>
+
+    <div class="result" id="result">
+      <div class="result-top">
+        <div class="ring-wrap">
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle class="ring-bg" cx="48" cy="48" r="40"></circle>
+            <circle class="ring-fg" id="ringFg" cx="48" cy="48" r="40"></circle>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-score" id="ringScore">0</div>
+            <div class="ring-total" id="ringTotal">/ 20</div>
+          </div>
+        </div>
+        <div>
+          <div class="result-name" id="resultName">—</div>
+          <div class="result-pct" id="resultPct">—</div>
+        </div>
+      </div>
+
+      <div class="feedback">
+        <p class="feedback-title" id="feedbackTitle">—</p>
+        <p id="feedbackText">—</p>
+      </div>
+    </div>
+
+    <div class="not-found" id="notFound">
+      <strong id="notFoundName"></strong>
+      <div style="margin-top:4px;">Result not found. Please check the spelling or contact the Bytecore desk.</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Only your own result is shown when you search your name.</div>
+
+<script>
+  // ---- Result data ----
+  // Default total = 20 marks. Aliya's test total is 70 marks (kept separate, as instructed).
+  const students = [
+    {name:"Humaira", marks:8, total:20},
+    {name:"Zeenat", marks:1, total:20},
+    {name:"Arsalan", marks:3, total:20},
+    {name:"Junaid Khan", marks:1, total:20},
+    {name:"Shivani", marks:5, total:20},
+    {name:"Neeraj", marks:4, total:20},
+    {name:"Ajay", marks:2, total:20},
+    {name:"Sanjay", marks:5, total:20},
+    {name:"Aryan", marks:0, total:20},
+    {name:"Harshi", marks:0, total:20},
+    {name:"Harshit", marks:0, total:20},
+    {name:"Devraj", marks:5, total:20},
+    {name:"Nikki", marks:3, total:20},
+    {name:"Raj", marks:1, total:20},
+    {name:"Neha", marks:1, total:20},
+    {name:"Resham", marks:1, total:20},
+    {name:"Krishna", marks:0, total:20},
+    {name:"Sajjad", marks:9, total:20},
+    {name:"Divyansh", marks:4, total:20},
+    {name:"Saurabh", marks:3, total:20},
+    {name:"Akshat", marks:6, total:20},
+    {name:"Ashu Ali", marks:11, total:20},
+    {name:"Nisha", marks:3, total:20},
+    {name:"Tanish", marks:9, total:20},
+    {name:"Sana", marks:8, total:20},
+    {name:"Tauheed", marks:6, total:20},
+    {name:"Harsh", marks:12, total:20},
+    {name:"Rishab", marks:4, total:20},
+    {name:"Aryan", marks:4, total:20},
+    {name:"Pankaj", marks:4, total:20},
+    {name:"Shakib", marks:10, total:20},
+    {name:"Kashifa", marks:9, total:20},
+    {name:"Zulekha", marks:4, total:20},
+    {name:"Nusrat", marks:3, total:20},
+    {name:"Gudiya", marks:3, total:20},
+    {name:"Seelu", marks:4, total:20},
+    {name:"Mahira", marks:4, total:20},
+    {name:"Aliya", marks:51, total:70}
+  ];
+
+  // ---- Top scorer + Top 3 (based on the /20 test only; Aliya's test has a different total so kept out of ranking) ----
+  const ranked = students.filter(s => s.total === 20).slice().sort((a,b) => b.marks - a.marks).slice(0,3);
+  document.getElementById('topperText').textContent = ranked[0].name + ' — ' + ranked[0].marks + '/' + ranked[0].total;
+  const top3List = document.getElementById('top3List');
+  ranked.forEach((s,i) => {
+    const row = document.createElement('div');
+    row.className = 'top3-row';
+    row.innerHTML = '<div class="top3-rank">'+(i+1)+'</div><div class="top3-name">'+s.name+'</div><div class="top3-marks">'+s.marks+'/'+s.total+'</div>';
+    top3List.appendChild(row);
+  });
+
+  // ---- Search helpers ----
+  const normalize = s => s.toLowerCase().replace(/[^a-z]/g,'');
+
+  function levenshtein(a, b){
+    const m = a.length, n = b.length;
+    if(m === 0) return n;
+    if(n === 0) return m;
+    const dp = Array.from({length:m+1}, (_,i) => [i, ...Array(n).fill(0)]);
+    for(let j=0;j<=n;j++) dp[0][j] = j;
+    for(let i=1;i<=m;i++){
+      for(let j=1;j<=n;j++){
+        dp[i][j] = a[i-1] === b[j-1]
+          ? dp[i-1][j-1]
+          : 1 + Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]);
+      }
+    }
+    return dp[m][n];
+  }
+
+  // lower score = better match. Checks the full name and each individual word.
+  function matchScore(query, name){
+    const nq = normalize(query);
+    if(!nq) return 999;
+    const parts = [normalize(name), ...name.split(/\s+/).map(normalize)];
+    let best = 999;
+    parts.forEach(p => {
+      if(!p) return;
+      if(p === nq){ best = Math.min(best, 0); return; }
+      if(p.startsWith(nq)){ best = Math.min(best, 1); return; }
+      if(p.includes(nq)){ best = Math.min(best, 2); return; }
+      if(nq.length >= 3){
+        const d = levenshtein(nq, p);
+        const allowed = nq.length <= 4 ? 1 : 2;
+        if(d <= allowed) best = Math.min(best, 3 + d);
+      }
+    });
+    return best;
+  }
+
+  function getMatches(query){
+    return students
+      .map(s => ({ s, score: matchScore(query, s.name) }))
+      .filter(m => m.score < 999)
+      .sort((a,b) => a.score - b.score)
+      .map(m => m.s);
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const suggestionsEl = document.getElementById('suggestions');
+  const resultEl = document.getElementById('result');
+  const notFoundEl = document.getElementById('notFound');
+  const notFoundName = document.getElementById('notFoundName');
+
+  const ringFg = document.getElementById('ringFg');
+  const ringScore = document.getElementById('ringScore');
+  const ringTotal = document.getElementById('ringTotal');
+  const resultName = document.getElementById('resultName');
+  const resultPct = document.getElementById('resultPct');
+  const feedbackTitle = document.getElementById('feedbackTitle');
+  const feedbackText = document.getElementById('feedbackText');
+
+  const RADIUS = 40;
+  const CIRC = 2 * Math.PI * RADIUS;
+  ringFg.style.strokeDasharray = CIRC;
+  ringFg.style.strokeDashoffset = CIRC;
+
+  function band(pct){
+    if(pct >= 90) return {title:'Outstanding performance', text:'Bahut zabardast! Concept bahut acche se clear hai. Isi consistency ko maintain rakho.'};
+    if(pct >= 70) return {title:'Very good work', text:'Achha result hai. Thodi aur practice se full marks tak pahunch sakte ho.'};
+    if(pct >= 50) return {title:'Good, room to improve', text:'Basics clear hain, practice thodi aur badhani hogi. Roz thoda time do, agla test behtar hoga.'};
+    if(pct >= 25) return {title:'Needs more practice', text:'Concepts abhi puri tarah clear nahi hain. Extra practice karo aur teacher se doubts zaroor pucho.'};
+    return {title:'Needs extra attention', text:'Ghabrao mat — har koi improve kar sakta hai. Roz thodi practice aur class mein dhyaan se next test zaroor better hoga.'};
+  }
+
+  function animateScore(target){
+    let current = 0;
+    const dur = 600, start = performance.now();
+    function step(t){
+      const p = Math.min(1, (t - start) / dur);
+      current = Math.round(target * p);
+      ringScore.textContent = current;
+      if(p < 1) requestAnimationFrame(step);
+      else ringScore.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function hideSuggestions(){ suggestionsEl.classList.remove('show'); suggestionsEl.innerHTML=''; }
+
+  function showResult(student){
+    notFoundEl.classList.remove('show');
+    hideSuggestions();
+
+    const pct = Math.round((student.marks / student.total) * 100);
+    const b = band(pct);
+    const offset = CIRC - (student.marks / student.total) * CIRC;
+
+    resultName.textContent = student.name;
+    resultPct.textContent = pct + '% score';
+    ringTotal.textContent = '/ ' + student.total;
+
+    feedbackTitle.textContent = b.title;
+    feedbackText.textContent = b.text;
+
+    ringFg.style.transition = 'none';
+    ringFg.style.strokeDashoffset = CIRC;
+    void ringFg.offsetWidth;
+    ringFg.style.transition = 'stroke-dashoffset 0.9s cubic-bezier(.2,.8,.2,1)';
+    ringFg.style.strokeDashoffset = offset;
+
+    animateScore(student.marks);
+    resultEl.classList.add('show');
+    localStorage.setItem('bytecore_last_search', student.name);
+  }
+
+  function renderSuggestions(matches, query){
+    suggestionsEl.innerHTML = '';
+    // detect duplicate names in the match set so we can disambiguate with marks
+    const nameCounts = {};
+    matches.forEach(s => { nameCounts[s.name] = (nameCounts[s.name]||0) + 1; });
+
+    matches.slice(0,6).forEach(s => {
+      const btn = document.createElement('button');
+      const dup = nameCounts[s.name] > 1;
+      btn.innerHTML = '<span>'+s.name+'</span>' + (dup ? '<span class="sm">'+s.marks+'/'+s.total+'</span>' : '');
+      btn.onclick = () => { searchInput.value = s.name; showResult(s); };
+      suggestionsEl.appendChild(btn);
+    });
+    suggestionsEl.classList.toggle('show', matches.length > 0);
+  }
+
+  function liveSearch(){
+    const q = searchInput.value.trim();
+    resultEl.classList.remove('show');
+    notFoundEl.classList.remove('show');
+    if(!q){ hideSuggestions(); return; }
+    const matches = getMatches(q);
+    renderSuggestions(matches, q);
+  }
+
+  function commitSearch(){
+    const q = searchInput.value.trim();
+    if(!q) return;
+    const matches = getMatches(q);
+    if(matches.length === 1){
+      showResult(matches[0]);
+    } else if(matches.length > 1){
+      renderSuggestions(matches, q);
+    } else {
+      hideSuggestions();
+      notFoundName.textContent = '"' + q + '"';
+      notFoundEl.classList.add('show');
+    }
+  }
+
+  searchInput.addEventListener('input', liveSearch);
+  searchInput.addEventListener('keydown', e => { if(e.key === 'Enter') commitSearch(); });
+  searchBtn.addEventListener('click', commitSearch);
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.card')) hideSuggestions();
+  });
+</script>
+</body>
+</html>
