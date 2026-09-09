@@ -22,7 +22,7 @@ import { auth, isFirebaseConfigured } from "@/lib/firebase";
 // accounts are already gatekept because only you can create one (via
 // Firebase Console > Authentication > Add user), so this list only matters
 // for the "Sign in with Google" button.
-const ALLOWED_ADMIN_EMAILS = ["coderafroj@gmail.com"];
+const ALLOWED_ADMIN_EMAILS = ["codarafroj@gmail.com"];
 
 interface AuthContextValue {
   user: User | null;
