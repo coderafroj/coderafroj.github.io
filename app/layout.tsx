@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -128,6 +129,7 @@ export default function RootLayout({
         className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg text-fg`}
       >
         <div className="grain-bg" />
+        <CustomCursor />
         {children}
       </body>
     </html>

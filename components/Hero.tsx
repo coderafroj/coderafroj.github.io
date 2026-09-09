@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import HeroVisual from "./HeroVisual";
 import OrbitingIcons from "./OrbitingIcons";
@@ -21,6 +21,10 @@ export default function Hero() {
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [done, setDone] = useState(false);
+
+  const { scrollY } = useScroll();
+  const yParallax = useTransform(scrollY, [0, 1000], [0, 400]);
+  const opacityParallax = useTransform(scrollY, [0, 500], [1, 0]);
 
   useEffect(() => {
     if (lineIndex >= LINES.length) {
@@ -47,12 +51,15 @@ export default function Hero() {
       {/* Animated node network — a living, moving graphic instead of a flat background */}
       <HeroVisual />
 
-      {/* Oversized outlined word — pure typographic background element */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+      {/* Oversized outlined word — pure typographic background element with scroll parallax */}
+      <motion.div 
+        style={{ y: yParallax, opacity: opacityParallax }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+      >
         <span className="font-display font-extrabold text-outline text-[22vw] leading-none whitespace-nowrap">
           CODE
         </span>
-      </div>
+      </motion.div>
 
       <div className="relative max-w-6xl mx-auto px-5 md:px-8 w-full">
         <motion.div

@@ -23,7 +23,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -6 }}
+      whileHover={{ y: -6, scale: 1.01 }}
       className={`group relative block overflow-hidden card-frame ${
         project.featured ? "md:col-span-2" : ""
       }`}
@@ -34,6 +34,10 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           {project.price || "Available"}
         </div>
       )}
+
+      {/* Subtle inner glow on hover */}
+      <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 transition-colors duration-500 pointer-events-none z-20" />
+      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/[0.02] transition-colors duration-500 pointer-events-none z-20" />
 
       <div className="grid md:grid-cols-2">
         <div className="p-6 md:p-8 flex flex-col justify-between">
